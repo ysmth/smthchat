@@ -5,8 +5,95 @@
         <title>水木说</title>
         <meta name="description" content="水木说">
         <meta name="author" content="ysmth,smthchat">
+        <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+        <style media="screen">
+          body {
+            margin: 0
+          }
+          iframe {
+            display: block;       /* iframes are inline by default */
+            border: none;         /* Reset default border */
+            height: 100vh;        /* Viewport-relative units */
+            width: 100vw;
+          }
+
+          #smthchat {
+            background: #4886FF;
+            width: 100%;
+          }
+
+          #container img {
+            width: 80px;
+            margin-right: 10px;
+            height: 80px;
+          }
+
+          #container a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.6em;
+            font-weight: bold;
+            white-space: nowrap;
+          }
+
+          #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            height: 80px;
+          }
+
+          #download {
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+            display: none;
+          }
+
+          #download img {
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            width: 100px;
+            height: 100px;
+            -webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.36);
+            -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.36);
+            box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.36);
+          }
+        </style>
+        <script type="text/javascript">
+          $(function(){
+            // get hash
+            var url = 'https://www.coolapk.com/apk/com.smthchat';
+            var hash = window.location.hash;
+            if (hash && hash.indexOf('#/article') == 0) {
+              url = 'http://m.newsmth.net' + hash.substr(1);
+            }
+
+            $("#content").attr("src", url);
+
+            setTimeout(function() {
+              $('#smthchat').slideUp();
+              $('#download').show();
+            }, 3000);
+          });
+        </script>
     </head>
     <body>
-        haha
+        <div id="smthchat">
+          <div id="container">
+            <img src="http://pp.myapp.com/ma_icon/0/icon_52448793_1510564366/256"/>
+            <a href='https://www.coolapk.com/apk/com.smthchat' target="_blank">
+              由「水木说」App分享
+            </a>
+          </div>
+        </div>
+
+        <a id="download" href='https://www.coolapk.com/apk/com.smthchat' target="_blank">
+            <img src="http://pp.myapp.com/ma_icon/0/icon_52448793_1510564366/256"/>
+        </a>
+
+        <iframe id="content"/>
     </body>
 </html>
