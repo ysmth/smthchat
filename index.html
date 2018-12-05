@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>水木说</title>
-        <meta name="description" content="水木说">
+        <meta name="description" content="水木说app">
         <meta name="author" content="ysmth,smthchat">
         <script src="https://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
         <style media="screen">
@@ -63,6 +63,16 @@
           }
         </style>
         <script type="text/javascript">
+		  function getParameterByName(name, url) {
+		  	if (!url) url = window.location.href;
+		  	name = name.replace(/[\[\]]/g, '\\$&');
+		  	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+		  		results = regex.exec(url);
+		  	if (!results) return null;
+		  	if (!results[2]) return '';
+		  	return decodeURIComponent(results[2].replace(/\+/g, ' '));
+		  }
+
           $(function(){
             // get hash
             var url = 'https://www.coolapk.com/apk/com.smthchat';
@@ -72,6 +82,13 @@
             }
 
             $("#content").attr("src", url);
+
+			// update title
+            var title = getParameterByName("t");
+            if (title) {
+			  $('title').text(title);
+              $('meta[name=description]').attr('content', title);
+            }
 
             setTimeout(function() {
               $('#smthchat').slideUp();
